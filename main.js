@@ -61,9 +61,19 @@ login("chase") //?
 // 2.
 // Write an async function getUsersEmails
 // Using fetch, it should call the given url
-// const url1 = 'https://randomuser.me/api/?results=10';
+// 
 // logut a list of User Emails
 // OUTPUT
+const fetch = require('node-fetch');
+const url1 = 'https://randomuser.me/api/?results=10';
+
+async function getUsersEmails() {
+    const getURL = await fetch(url1)
+    console.log(getURL) //?
+}
+
+getUsersEmails();
+
 // Email List:
 
 // craig.odonoghue@example.com
