@@ -5,51 +5,64 @@
 // 3rd function gives hit points and strength of user based on level
 // Using async await....create a function called login, that takes a name and email
 // Success from the function will log a string using values from all 3 functions
-// Successful String Output: '<name from loginUser> is an <level> player with <strength> strength and <hitPoint> hit points.'
+// Successful String Output: '<name from loginUser> is an <level> player with <strength> strength 
+// and <hitPoint> hit points.'
 // Failed String Output: 'User Not Logged in'
 
 // Except for loginUser, calling a function requires a value from the previous function
 // Do not edit loginUser, level or levelPower except to test the error variable
 // log the error message in your function so that it shows the message if reject has been called
 
-// const loginUser = (name) => {
-//   return new Promise((resolve, reject) => {
-//     const error = false;
-//     let random = Math.floor(Math.random() * 98);
+const loginUser = (name) => {
+return new Promise((resolve, reject) => {
+    const error = false;
+     let random = Math.floor(Math.random() * 98);
 
-//     error
-//       ? reject('User Not logged in')
-//       : resolve({ name: `The ${name}-Meister`, random });
-//   });
-// };
+    error
+    ? reject('User Not logged in')
+    : resolve({ name: `The ${name}-Meister`, random }); //?
+});
+};
 
-// let level = (levelNumber) => {
-//   return new Promise((resolve, reject) => {
-//     levelNumber === 0
-//       ? reject('User had no power and is expired')
-//       : levelNumber < 32
-//       ? resolve('amateur')
-//       : levelNumber < 65
-//       ? resolve('intermediate')
-//       : resolve('advanced');
-//   });
-// };
+let level = (levelNumber) => {
+return new Promise((resolve, reject) => {
+    levelNumber === 0
+    ? reject('User had no power and is expired')
+    : levelNumber < 32
+    ? resolve('amateur')
+    : levelNumber < 65
+    ? resolve('intermediate')
+    : resolve('advanced');
+});
+};
 
-// let levelPower = (level) => {
-//   return new Promise((resolve, reject) => {
-//     return 'advanced'
-//       ? resolve({ hitPoints: 200, strength: 10 })
-//       : 'intermediate'
-//       ? resolve({ hitPoints: 100, strength: 7 })
-//       : resolve({ hitPoints: 70, strength: 4 });
-//   });
-// };
+let levelPower = (level) => {
+return new Promise((resolve, reject) => {
+    level === 'advanced' ? resolve({ hitPoints: 200, strength: 10 })
+    : level === 'intermediate' ? resolve({ hitPoints: 100, strength: 7 })
+    : resolve({ hitPoints: 70, strength: 4 });
+});
+};
 
-2.
+async function login(name) {
+    try {
+        const charName = await loginUser(name)
+        const leveler = await level(charName.random)
+        const powah = await levelPower(leveler)
+        console.log(`${charName.name} is a ${leveler} player with ${powah.strength} strength and ${powah.hitPoints} hit points.`);
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+login("chase") //?
+
+
+// 2.
 // Write an async function getUsersEmails
 // Using fetch, it should call the given url
 // const url1 = 'https://randomuser.me/api/?results=10';
-// log out a list of User Emails
+// logut a list of User Emails
 // OUTPUT
 // Email List:
 
